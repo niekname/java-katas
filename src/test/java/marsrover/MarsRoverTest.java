@@ -130,4 +130,36 @@ public class MarsRoverTest {
         final Position expected = new Position(0, 0, startDirection);
         assertThat(marsRover.currentPosition()).isEqualTo(expected);
     }
+
+    @Test
+    void west_forward() {
+        final MarsRover marsRover = new MarsRover(new Position(0, 0, WEST));
+
+        marsRover.execute("F");
+
+        final Position expected = new Position(-1, 0, WEST);
+        assertThat(marsRover.currentPosition()).isEqualTo(expected);
+    }
+
+    @Test
+    void south_forward() {
+        final MarsRover marsRover = new MarsRover(new Position(0, 0, SOUTH));
+
+        marsRover.execute("F");
+
+        final Position expected = new Position(0, -1, SOUTH);
+        assertThat(marsRover.currentPosition()).isEqualTo(expected);
+    }
+
+    @Test
+    void east_forward() {
+        final MarsRover marsRover = new MarsRover(new Position(0, 0, EAST));
+
+        marsRover.execute("F");
+
+        final Position expected = new Position(1, 0, EAST);
+        assertThat(marsRover.currentPosition()).isEqualTo(expected);
+    }
+
+
 }

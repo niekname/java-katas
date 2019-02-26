@@ -40,7 +40,14 @@ public class Position {
     }
 
     public void forward() {
-        this.y++;
+        if (direction == Direction.WEST)
+            x--;
+        else if (direction == Direction.SOUTH)
+            y--;
+        else if (direction == Direction.EAST)
+            x++;
+        else
+            y++;
     }
 
     public void backward() {
