@@ -1,6 +1,8 @@
 package marsrover;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import static marsrover.Position.Direction.EAST;
 import static marsrover.Position.Direction.NORTH;
@@ -107,13 +109,14 @@ public class MarsRoverTest {
         assertThat(marsRover.currentPosition()).isEqualTo(expected);
     }
 
-    @Test
-    public void four_times_left() {
-        final MarsRover marsRover = new MarsRover();
+    @ParameterizedTest
+    @EnumSource(Position.Direction.class)
+    public void four_times_left_ends_up_in_same_direction(Position.Direction startDirection) {
+        final MarsRover marsRover = new MarsRover(new Position(0, 0, startDirection));
 
         marsRover.execute("L", "L", "L", "L");
 
-        final Position expected = new Position(0, 0, NORTH);
+        final Position expected = new Position(0, 0, startDirection);
         assertThat(marsRover.currentPosition()).isEqualTo(expected);
     }
 }
