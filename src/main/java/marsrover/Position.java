@@ -48,7 +48,7 @@ public class Position {
     }
 
     public void turnLeft() {
-        this.direction = direction.turnLeft();
+        this.direction = direction.leftNeighbour();
 
     }
 
@@ -58,16 +58,31 @@ public class Position {
     }
 
     enum Direction {
-        NORTH, SOUTH, EAST, WEST;
+        NORTH() {
+            @Override
+            Direction leftNeighbour() {
+                return WEST;
+            }
+        }, SOUTH {
+            @Override
+            Direction leftNeighbour() {
+                return EAST;
+            }
+        }, EAST {
+            @Override
+            Direction leftNeighbour() {
+                return NORTH;
+            }
+        }, WEST {
+            @Override
+            Direction leftNeighbour() {
+                return SOUTH;
+            }
+        };
 
-        private Direction turnLeft() {
-            if (this.equals(Direction.WEST))
-                return Direction.SOUTH;
-            else if (this.equals(Direction.SOUTH))
-                return Direction.EAST;
-            else
-                return Direction.WEST;
-        }
+
+        abstract Direction leftNeighbour();
+
 
     }
 }
