@@ -48,14 +48,26 @@ public class Position {
     }
 
     public void turnLeft() {
-        this.direction = Direction.WEST;
+        this.direction = direction.turnLeft();
+
     }
+
 
     public void turnRight() {
         this.direction = Direction.EAST;
     }
 
     enum Direction {
-        NORTH, SOUTH, EAST, WEST
+        NORTH, SOUTH, EAST, WEST;
+
+        private Direction turnLeft() {
+            if (this.equals(Direction.WEST))
+                return Direction.SOUTH;
+            else if (this.equals(Direction.SOUTH))
+                return Direction.EAST;
+            else
+                return Direction.WEST;
+        }
+
     }
 }

@@ -1,6 +1,5 @@
 package marsrover;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static marsrover.Position.Direction.EAST;
@@ -89,13 +88,22 @@ public class MarsRoverTest {
     }
 
     @Test
-    @Disabled // TODO
-    public void left_left() {
+    public void double_left() {
         final MarsRover marsRover = new MarsRover();
 
         marsRover.execute("L", "L");
 
         final Position expected = new Position(0, 0, SOUTH);
+        assertThat(marsRover.currentPosition()).isEqualTo(expected);
+    }
+
+    @Test
+    public void three_times_left() {
+        final MarsRover marsRover = new MarsRover();
+
+        marsRover.execute("L", "L","L");
+
+        final Position expected = new Position(0, 0, EAST);
         assertThat(marsRover.currentPosition()).isEqualTo(expected);
     }
 }
