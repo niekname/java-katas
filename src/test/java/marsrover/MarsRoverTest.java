@@ -119,4 +119,15 @@ public class MarsRoverTest {
         final Position expected = new Position(0, 0, startDirection);
         assertThat(marsRover.currentPosition()).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @EnumSource(Position.Direction.class)
+    public void four_times_right_ends_up_in_same_direction(Position.Direction startDirection) {
+        final MarsRover marsRover = new MarsRover(new Position(0, 0, startDirection));
+
+        marsRover.execute("R", "R", "R", "R");
+
+        final Position expected = new Position(0, 0, startDirection);
+        assertThat(marsRover.currentPosition()).isEqualTo(expected);
+    }
 }
