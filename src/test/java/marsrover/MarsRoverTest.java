@@ -101,9 +101,19 @@ public class MarsRoverTest {
     public void three_times_left() {
         final MarsRover marsRover = new MarsRover();
 
-        marsRover.execute("L", "L","L");
+        marsRover.execute("L", "L", "L");
 
         final Position expected = new Position(0, 0, EAST);
+        assertThat(marsRover.currentPosition()).isEqualTo(expected);
+    }
+
+    @Test
+    public void four_times_left() {
+        final MarsRover marsRover = new MarsRover();
+
+        marsRover.execute("L", "L", "L", "L");
+
+        final Position expected = new Position(0, 0, NORTH);
         assertThat(marsRover.currentPosition()).isEqualTo(expected);
     }
 }
